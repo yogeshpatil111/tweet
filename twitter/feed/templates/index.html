@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+
+</style>
+</head>
+<body bgcolor="#E6E6FA">
+
+</body>
+</html>
+
+{% if user %}
+
+    <div style="border: 1px gray; width: 50%; margin:auto; background-color: white" align="center" >
+    <h1> Welcome: {{ user.name }}!!!</h1>
+    <h3> Tweets : {{ user.tweetCount }}  Follows : {{ user.follows }}</h3>
+    <a href="/feed?userid={{ user.userid }}&count={{ user.count }}">Home</a>
+    <a href="/feed?userid={{ user.userid }}&count={{ user.count }}&since_id={{ user.nextStart }}">Next</a>
+
+    </div>
+    <br></br>
+    {% for tweet in tweets %}
+
+    <div style="border: 1px gray; width: 50%; margin:auto; background-color: white">
+        <b><a href="/feed?userid={{ tweet.tweet.user }}&count={{ tweet.refCount }}">{{ tweet.username }}</a></b>
+        <br></br>
+        <a>{{ tweet.tweet.text }}</a>
+        <br></br>
+        <hr>
+    </div>
+    {% endfor %}
+    <br></br>
+    <div style="border: 1px solid black; width: 50%; margin:auto; background-color: white" align="center" >
+    <a href="/feed?userid={{ user.userid }}&count={{ user.count }}">Home</a>
+    <a href="/feed?userid={{ user.userid }}&count={{ user.count }}&since_id={{ user.nextStart }}">Next</a>
+    </div>
+
+{% endif %}
+
+
